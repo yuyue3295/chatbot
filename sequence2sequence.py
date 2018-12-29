@@ -713,9 +713,7 @@ class SequenceToSequence(object):
                if not self.use_beamsearch_decode:
                    dod = self.decoder_outputs_decode
                    self.decoder_pred_decode = dod.sample_id
-                   self.decoder_pred_decode = tf.transpose(
-                       self.decoder_pred_decode,(1,0)
-                   )
+                  
                else:
                    self.decoder_pred_decode = self.decoder_outputs_decode.predicted_ids
                    if self.time_major:
@@ -723,9 +721,6 @@ class SequenceToSequence(object):
                            self.decoder_pred_decode,(1,0,2)
                        )
 
-                   self.decoder_pred_decode = tf.transpose(
-                       self.decoder_pred_decode,(1,0,2)
-                   )
 
                    self.decoder_pred_decode = tf.transpose(
                        self.decoder_pred_decode,
